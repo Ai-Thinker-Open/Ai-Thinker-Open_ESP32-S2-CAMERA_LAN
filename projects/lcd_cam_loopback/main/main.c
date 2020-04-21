@@ -13,8 +13,15 @@
 #include "cam.h"
 #include "ov2640.h"
 #include "lcd.h"
+#include "jpeg.h"
 
 static const char *TAG = "main";
+
+#define JPEG_MODE 0
+#define DEBUG 0
+
+#define CAM_WIDTH   (320)
+#define CAM_HIGH    (240)
 
 #define LCD_CLK   GPIO_NUM_15
 #define LCD_MOSI  GPIO_NUM_9
@@ -37,12 +44,8 @@ static const char *TAG = "main";
 #define CAM_D6    GPIO_NUM_21
 #define CAM_D7    GPIO_NUM_38
 
-#define CAM_WIDTH   (320)
-#define CAM_HIGH    (240)
-
 static void cam_task(void *arg)
 {
-
     lcd_config_t lcd_config = {
         .clk_fre = 80 * 1000 * 1000,
         .pin_clk = LCD_CLK,
@@ -51,7 +54,7 @@ static void cam_task(void *arg)
         .pin_cs = LCD_CS,
         .pin_rst = LCD_RST,
         .pin_bk = LCD_BK,
-        .max_buffer_size = 64 * 1024,
+        .max_buffer_size = 32 * 1024,
         .horizontal = 2 // 2: UP, 3： DOWN
     };
 
@@ -59,6 +62,7 @@ static void cam_task(void *arg)
 
     cam_config_t cam_config = {
         .bit_width = 8,
+        .mode.jpeg = JPEG_MODE,
         .xclk_fre = 16 * 1000 * 1000,
         .pin = {
             .xclk  = CAM_XCLK,
@@ -71,7 +75,7 @@ static void cam_task(void *arg)
             .width = CAM_WIDTH,
             .high  = CAM_HIGH,
         },
-        .max_buffer_size = 64 * 1024, 
+        .max_buffer_size = 32 * 1024, // max 32KBytes
         .task_pri = 10
     };
 
@@ -84,16 +88,40 @@ static void cam_task(void *arg)
         vTaskDelete(NULL);
         return;
     }
-	OV2640_RGB565_Mode(false);	//RGB565模式
+    if (cam_config.mode.jpeg) {
+        OV2640_JPEG_Mode();
+    } else {
+        OV2640_RGB565_Mode(false);	//RGB565模式
+    }
+    
     OV2640_ImageSize_Set(800, 600);
     OV2640_ImageWin_Set(0, 0, 800, 600);
   	OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
     ESP_LOGI(TAG, "camera init done\n");
-    cam_start();
     while (1) {
-        uint8_t *cam_buf = cam_take();
+        uint8_t *cam_buf = NULL;
+        size_t recv_len = cam_take(&cam_buf);
+#if JPEG_MODE
+#if DEBUG
+        printf("total_len: %d\n", recv_len);
+        for (int x = 0; x < 10; x++) {
+            ets_printf("%d ", cam_buf[x]);
+        }
+        ets_printf("\n");
+#endif
+
+        int w, h;
+        uint8_t *img = jpeg_decode(cam_buf, &w, &h);
+        if (img) {
+            printf("jpeg: w: %d, h: %d\n", w, h);
+            lcd_set_index(0, 0, w - 1, h - 1);
+            lcd_write_data(img, w * h * sizeof(uint16_t));
+            free(img);
+        }
+#else
         lcd_set_index(0, 0, CAM_WIDTH - 1, CAM_HIGH - 1);
         lcd_write_data(cam_buf, CAM_WIDTH * CAM_HIGH * 2);
+#endif
         cam_give(cam_buf);   
         // 使用逻辑分析仪观察帧率
         gpio_set_level(LCD_BK, 1);
@@ -104,5 +132,5 @@ static void cam_task(void *arg)
 
 void app_main() 
 {
-    xTaskCreate(cam_task, "cam_task", 2048, NULL, 5, NULL);
+    xTaskCreate(cam_task, "cam_task", 4096, NULL, 5, NULL);
 }

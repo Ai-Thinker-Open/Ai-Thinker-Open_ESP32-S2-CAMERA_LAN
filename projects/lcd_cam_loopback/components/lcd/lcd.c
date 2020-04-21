@@ -5,20 +5,30 @@
 #include "freertos/task.h"
 #include "freertos/semphr.h"
 #include "esp_heap_caps.h"
+#include "esp32s2/rom/lldesc.h"
+#include "soc/system_reg.h"
 #include "esp_log.h"
 #include "lcd.h"
 
 static const char *TAG = "lcd";
 
+#define LCD_DMA_MAX_SIZE     (4095)
+
 typedef struct {
-    spi_device_handle_t spi;
+    uint32_t buffer_size;
+    uint32_t half_buffer_size;
+    uint32_t node_cnt;
+    uint32_t half_node_cnt;
+    uint32_t dma_size;
     uint8_t horizontal;
-    uint32_t buffer_size; // DMA used
     uint8_t dc_state;
     uint8_t pin_dc;
     uint8_t pin_cs;
     uint8_t pin_rst;
     uint8_t pin_bk;
+    lldesc_t *dma;
+    uint8_t *buffer;
+    QueueHandle_t event_queue;
 } lcd_obj_t;
 
 static lcd_obj_t *lcd_obj = NULL;
@@ -43,35 +53,79 @@ void inline lcd_set_blk(uint8_t state)
     gpio_set_level(lcd_obj->pin_bk, state);
 }
 
-static void IRAM_ATTR spi_pre_transfer_callback(spi_transaction_t *t)
+static void IRAM_ATTR lcd_isr(void *arg)
 {
-    int dc = (int)t->user;
-    lcd_set_dc(lcd_obj->dc_state);
+    int event;
+    BaseType_t HPTaskAwoken = pdFALSE;
+    typeof(GPSPI3.dma_int_st) int_st = GPSPI3.dma_int_st;
+    GPSPI3.dma_int_clr.val = int_st.val;
+    // ets_printf("intr: 0x%x\n", int_st);
+
+    if (int_st.out_eof) {
+        xQueueSendFromISR(lcd_obj->event_queue, &int_st.val, &HPTaskAwoken);
+    }
+
+    if (HPTaskAwoken == pdTRUE) {
+        portYIELD_FROM_ISR();
+    }
 }
 
 static void spi_write_data(uint8_t *data, size_t len)
 {
-    if (len <= 0) {
-        return;
+    int event  = 0;
+    int x = 0, cnt = 0, size = 0;
+    int end_pos = 0;
+    lcd_set_dc(lcd_obj->dc_state);
+    // 生成一段数据DMA链表
+    for (x = 0; x < lcd_obj->node_cnt; x++) {
+        lcd_obj->dma[x].size = lcd_obj->dma_size;
+        lcd_obj->dma[x].length = lcd_obj->dma_size;
+        lcd_obj->dma[x].buf = (lcd_obj->buffer + lcd_obj->dma_size * x);
+        lcd_obj->dma[x].eof = !((x + 1) % lcd_obj->half_node_cnt);
+        lcd_obj->dma[x].empty = &lcd_obj->dma[(x + 1) % lcd_obj->node_cnt];
     }
-    int x, y;
-    spi_transaction_t t, *rtrans;
-    memset(&t, 0, sizeof(t));         //Zero out the transaction         
-    t.length = 8 * lcd_obj->buffer_size; 
-    for (y = 0; y < len / lcd_obj->buffer_size; y++) {
-        t.tx_buffer = data; 
-        spi_device_queue_trans(lcd_obj->spi, &t, portMAX_DELAY);
-        spi_device_get_trans_result(lcd_obj->spi, &rtrans, portMAX_DELAY);
-        data += lcd_obj->buffer_size;
+    lcd_obj->dma[lcd_obj->half_node_cnt - 1].empty = NULL;
+    lcd_obj->dma[lcd_obj->node_cnt - 1].empty = NULL;
+    cnt = len / lcd_obj->half_buffer_size;
+    // 启动信号
+    xQueueSend(lcd_obj->event_queue, &event, 0);
+    // 处理完整一段数据， 乒乓操作
+    for (x = 0; x < cnt; x++) {
+        memcpy(lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt].buf, data, lcd_obj->half_buffer_size);
+        data += lcd_obj->half_buffer_size;
+        xQueueReceive(lcd_obj->event_queue, (void *)&event, portMAX_DELAY);
+        GPSPI3.mosi_dlen.usr_mosi_bit_len = lcd_obj->half_buffer_size * 8 - 1;
+        GPSPI3.dma_out_link.addr = ((uint32_t)&lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt]) & 0xfffff;
+        GPSPI3.dma_out_link.start = 1;
+        ets_delay_us(1);
+        GPSPI3.cmd.usr = 1;
     }
-    if (len % lcd_obj->buffer_size) {
-        t.length = 8 * (len % lcd_obj->buffer_size); 
-        t.tx_buffer = data; 
-        spi_device_queue_trans(lcd_obj->spi, &t, portMAX_DELAY);
-        spi_device_get_trans_result(lcd_obj->spi, &rtrans, portMAX_DELAY);
+    cnt = len % lcd_obj->half_buffer_size;
+    // 处理剩余非完整段数据
+    if (cnt) {
+        memcpy(lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt].buf, data, cnt);
+        // 处理数据长度为 lcd_obj->dma_size 的整数倍情况
+        if (cnt % lcd_obj->dma_size) {
+            end_pos = (x % 2) * lcd_obj->half_node_cnt + cnt / lcd_obj->dma_size;
+            size = cnt % lcd_obj->dma_size;
+        } else {
+            end_pos = (x % 2) * lcd_obj->half_node_cnt + cnt / lcd_obj->dma_size - 1;
+            size = lcd_obj->dma_size;
+        }
+        // 处理尾节点，使其成为 DMA 尾
+        lcd_obj->dma[end_pos].size = size;
+        lcd_obj->dma[end_pos].length = size;
+        lcd_obj->dma[end_pos].eof = 1;
+        lcd_obj->dma[end_pos].empty = NULL;
+        xQueueReceive(lcd_obj->event_queue, (void *)&event, portMAX_DELAY);
+        GPSPI3.mosi_dlen.usr_mosi_bit_len = cnt * 8 - 1;
+        GPSPI3.dma_out_link.addr = ((uint32_t)&lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt]) & 0xfffff;
+        GPSPI3.dma_out_link.start = 1;
+        ets_delay_us(1);
+        GPSPI3.cmd.usr = 1;
     }
+    xQueueReceive(lcd_obj->event_queue, (void *)&event, portMAX_DELAY);
 }
-
 
 static void lcd_delay_ms(uint32_t time)
 {
@@ -214,6 +268,107 @@ static void lcd_st7789_config(lcd_config_t *config)
     lcd_write_cmd(0x29); // DISPON (29h): Display On
 }
 
+static void lcd_config(lcd_config_t *config)
+{
+
+    REG_CLR_BIT(DPORT_PERIP_CLK_EN0_REG, DPORT_SPI3_CLK_EN);
+    REG_SET_BIT(DPORT_PERIP_CLK_EN0_REG, DPORT_SPI3_CLK_EN);
+    REG_SET_BIT(DPORT_PERIP_RST_EN0_REG, DPORT_SPI3_RST);
+    REG_CLR_BIT(DPORT_PERIP_RST_EN0_REG, DPORT_SPI3_RST);
+    REG_CLR_BIT(DPORT_PERIP_CLK_EN0_REG, DPORT_SPI3_DMA_CLK_EN);
+    REG_SET_BIT(DPORT_PERIP_CLK_EN0_REG, DPORT_SPI3_DMA_CLK_EN);
+    REG_SET_BIT(DPORT_PERIP_RST_EN0_REG, DPORT_SPI3_DMA_RST);
+    REG_CLR_BIT(DPORT_PERIP_RST_EN0_REG, DPORT_SPI3_DMA_RST);
+
+    int div = 2;
+    if (config->clk_fre == 80000000) {
+        GPSPI3.clock.clk_equ_sysclk = 1;
+    } else {
+        GPSPI3.clock.clk_equ_sysclk = 0;
+        div = 80000000 / config->clk_fre;
+    }
+    GPSPI3.ctrl1.clk_mode = 0;
+    GPSPI3.clock.clkdiv_pre = 1 - 1;
+    GPSPI3.clock.clkcnt_n = div - 1;
+    GPSPI3.clock.clkcnt_l = div - 1;
+    GPSPI3.clock.clkcnt_h = ((div >> 1) - 1);
+    
+    GPSPI3.misc.ck_dis = 0;
+
+    GPSPI3.user1.val = 0;
+    GPSPI3.slave.val = 0;
+    GPSPI3.misc.ck_idle_edge = 0;
+    GPSPI3.user.ck_out_edge = 0;
+    GPSPI3.ctrl.wr_bit_order = 0;
+    GPSPI3.ctrl.rd_bit_order = 0;
+    GPSPI3.user.val = 0;
+    GPSPI3.user.cs_setup = 1;
+    GPSPI3.user.cs_hold = 1;
+    GPSPI3.user.usr_mosi = 1;
+    GPSPI3.user.usr_mosi_highpart = 0;
+
+    GPSPI3.dma_conf.val = 0;
+    GPSPI3.dma_conf.out_rst = 1;
+    GPSPI3.dma_conf.out_rst = 0;
+    GPSPI3.dma_conf.ahbm_fifo_rst = 1;
+    GPSPI3.dma_conf.ahbm_fifo_rst = 0;
+    GPSPI3.dma_conf.ahbm_rst = 1;
+    GPSPI3.dma_conf.ahbm_rst = 0;
+    GPSPI3.dma_out_link.dma_tx_ena = 1;
+    GPSPI3.dma_conf.out_eof_mode = 1;
+    GPSPI3.cmd.usr = 0;
+
+    GPSPI3.dma_int_clr.val = ~0;
+    GPSPI3.dma_int_ena.val = 0;
+    GPSPI3.dma_int_ena.out_eof = 1;
+
+    intr_handle_t intr_handle = NULL;
+    esp_intr_alloc(ETS_SPI3_DMA_INTR_SOURCE, 0, lcd_isr, NULL, &intr_handle);
+}
+
+static void lcd_set_pin(lcd_config_t *config)
+{
+    PIN_FUNC_SELECT(GPIO_PIN_MUX_REG[config->pin_clk], PIN_FUNC_GPIO);
+    gpio_set_direction(config->pin_clk, GPIO_MODE_OUTPUT);
+    gpio_set_pull_mode(config->pin_clk, GPIO_FLOATING);
+    gpio_matrix_out(config->pin_clk, SPI3_CLK_OUT_MUX_IDX, 0, 0);
+
+    PIN_FUNC_SELECT(GPIO_PIN_MUX_REG[config->pin_mosi], PIN_FUNC_GPIO);
+    gpio_set_direction(config->pin_mosi, GPIO_MODE_OUTPUT);
+    gpio_set_pull_mode(config->pin_mosi, GPIO_FLOATING);
+    gpio_matrix_out(config->pin_mosi, SPI3_D_OUT_IDX, 0, 0);
+
+    //Initialize non-SPI GPIOs
+    gpio_config_t io_conf;
+    io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
+    io_conf.mode = GPIO_MODE_OUTPUT;
+    io_conf.pin_bit_mask = (1ULL << config->pin_dc) | (1ULL << config->pin_cs) | (1ULL << config->pin_rst) | (1ULL << config->pin_bk);
+    io_conf.pull_down_en = 0;
+    io_conf.pull_up_en = 0;
+    gpio_config(&io_conf);
+}
+
+void lcd_dma_config(lcd_config_t *config) 
+{
+    int cnt = 0;
+    lcd_obj->dma_size = LCD_DMA_MAX_SIZE;
+    for (cnt = 0;;cnt++) { // 寻找可以整除dma_size的buffer大小
+        if ((config->max_buffer_size - cnt) % lcd_obj->dma_size == 0) {
+            break;
+        }
+    }
+    lcd_obj->buffer_size = config->max_buffer_size - cnt;
+    lcd_obj->half_buffer_size = lcd_obj->buffer_size / 2;
+
+    lcd_obj->node_cnt = (lcd_obj->buffer_size) / lcd_obj->dma_size; // DMA节点个数
+    lcd_obj->half_node_cnt = lcd_obj->node_cnt / 2;
+
+    ESP_LOGI(TAG, "lcd_buffer_size: %d, lcd_dma_size: %d, lcd_dma_node_cnt: %d\n", lcd_obj->buffer_size, lcd_obj->dma_size, lcd_obj->node_cnt);
+
+    lcd_obj->dma    = (lldesc_t *)heap_caps_malloc(lcd_obj->node_cnt * sizeof(lldesc_t), MALLOC_CAP_DMA);
+    lcd_obj->buffer = (uint8_t *)heap_caps_malloc(lcd_obj->buffer_size * sizeof(uint8_t), MALLOC_CAP_DMA);
+}
+
 int lcd_init(lcd_config_t *config)
 {
     lcd_obj = (lcd_obj_t *)heap_caps_calloc(1, sizeof(lcd_obj_t), MALLOC_CAP_DMA);
@@ -221,41 +376,14 @@ int lcd_init(lcd_config_t *config)
         ESP_LOGI(TAG, "lcd object malloc error\n");
         return -1;
     }
-    esp_err_t ret;
-    spi_bus_config_t buscfg = {
-        .miso_io_num = -1,
-        .mosi_io_num = config->pin_mosi,
-        .sclk_io_num = config->pin_clk,
-        .quadwp_io_num = -1,
-        .quadhd_io_num = -1,
-        .max_transfer_sz = config->max_buffer_size
-    };
-    spi_device_interface_config_t devcfg = {
-        .clock_speed_hz = config->clk_fre,           //Clock out at 10 MHz
-        .mode = 0,                                //SPI mode 0
-        .spics_io_num = -1,                       //CS pin
-        .queue_size = 1,                          //We want to be able to queue 1 transactions at a time
-        .pre_cb = spi_pre_transfer_callback,  //Specify pre-transfer callback to handle D/C line
-        .flags = SPI_DEVICE_HALFDUPLEX
-    };
 
-    //Initialize the SPI bus
-    ret=spi_bus_initialize(HSPI_HOST, &buscfg, HSPI_HOST);
-    ESP_ERROR_CHECK(ret);
-    //Attach the LCD to the SPI bus
-    ret=spi_bus_add_device(HSPI_HOST, &devcfg, &lcd_obj->spi);
-    ESP_ERROR_CHECK(ret);
+    lcd_set_pin(config);
+    lcd_config(config);
+    lcd_dma_config(config);
 
+    lcd_obj->event_queue = xQueueCreate(1, sizeof(int));
+    
     lcd_obj->buffer_size = config->max_buffer_size;
-
-    //Initialize non-SPI GPIOs
-    gpio_config_t io_conf;
-    io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
-    io_conf.mode = GPIO_MODE_OUTPUT;
-    io_conf.pin_bit_mask = (1ULL << config->pin_dc) | (1ULL << config->pin_rst) | (1ULL << config->pin_cs) | (1ULL << config->pin_bk);
-    io_conf.pull_down_en = 0;
-    io_conf.pull_up_en = 0;
-    gpio_config(&io_conf);
 
     lcd_obj->pin_dc = config->pin_dc;
     lcd_obj->pin_cs = config->pin_cs;

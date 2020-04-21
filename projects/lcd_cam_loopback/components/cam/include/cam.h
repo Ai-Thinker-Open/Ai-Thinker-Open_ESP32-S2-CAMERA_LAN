@@ -36,9 +36,7 @@ typedef struct {
     uint8_t *frame2_buffer;
 } cam_config_t;
 
-void cam_start(void);
-void cam_stop(void);
-uint8_t *cam_take(void);
+size_t cam_take(uint8_t **buffer_p);
 void cam_give(uint8_t *buffer);
 int cam_init(const cam_config_t *config);
 
