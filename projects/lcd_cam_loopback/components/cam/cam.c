@@ -119,7 +119,7 @@ static void cam_config(cam_config_t *config)
     I2S0.conf2.cam_sync_fifo_reset = 0;
     I2S0.conf2.lcd_en = 1;
     I2S0.conf2.camera_en = 1;
-    I2S0.conf2.i_v_sync_filter_en = 1;
+    I2S0.conf2.i_v_sync_filter_en = 0;
     I2S0.conf2.i_v_sync_filter_thres = 1;
 
     I2S0.conf_chan.val = 0;
@@ -442,14 +442,14 @@ int cam_init(const cam_config_t *config)
     cam_obj->frame_buffer_queue = xQueueCreate(2, sizeof(frame_buffer_event_t));
 
     if (cam_obj->frame1_buffer != NULL) {
-        printf("frame1_buffer_en\n");
+        ESP_LOGI(TAG, "frame1_buffer_en\n");
         cam_obj->frame1_buffer_en = 1;
     } else {
         cam_obj->frame1_buffer_en = 0;
     }
     
     if (cam_obj->frame2_buffer != NULL) {
-        printf("frame2_buffer_en\n");
+        ESP_LOGI(TAG, "frame2_buffer_en\n");
         cam_obj->frame2_buffer_en = 1;
     } else {
         cam_obj->frame2_buffer_en = 0;

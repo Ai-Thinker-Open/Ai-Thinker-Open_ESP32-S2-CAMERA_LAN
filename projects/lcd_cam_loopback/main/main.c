@@ -75,7 +75,7 @@ static void cam_task(void *arg)
             .width = CAM_WIDTH,
             .high  = CAM_HIGH,
         },
-        .max_buffer_size = 32 * 1024, // max 32KBytes
+        .max_buffer_size = 32 * 1024,
         .task_pri = 10
     };
 
