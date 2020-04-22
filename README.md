@@ -5,6 +5,8 @@ Working frequency up to 240 MHz, providing a wealth of peripheral interfaces, in
 Touch sensors, temperature sensors and up to 43 GPIOs. Supports high-resolution LCD displays and Camera Sensor, as well as a variety of extension options.
 Perfectly supports open source GUI LittleVGL, providing a large number of rich and easy-to-use GUI components and design examples._
 
+![pin_conf.png](docs/pin_conf.png)
+
 ## Contents
 
 * Directory tree
@@ -12,11 +14,15 @@ Perfectly supports open source GUI LittleVGL, providing a large number of rich a
     ```
     ├── add_path.sh
     ├── docs
+    │   ├── logo.png
+    │   ├── OV2640_DS+(2.2).pdf
+    │   └── pin_conf.png
     ├── projects
+    │   ├── hmi
     │   └── lcd_cam_loopback
     ├── README.md
     └── tools
-        └── esp-idf
+        └── esp-id
     ```
 
     * projects
@@ -26,8 +32,6 @@ Perfectly supports open source GUI LittleVGL, providing a large number of rich a
     * tools
 
       * ESP32-S2 sdk
-
-      * ESP32-S2 toolchain
 
     * Data
 
@@ -79,4 +83,4 @@ You can follow the steps below to set up the development environment, or directl
 
 ### Datasheet
 
-* [CAM-OV2640](docs/LCD_NT35510.pdf)
+* [CAM-OV2640](docs/OV2640_DS+(2.2).pdf)
