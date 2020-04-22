@@ -133,5 +133,5 @@ static void cam_task(void *arg)
 
 void app_main() 
 {
-    xTaskCreate(cam_task, "cam_task", 2048, NULL, 5, NULL);
+    xTaskCreate(cam_task, "cam_task", 2048, NULL, configMAX_PRIORITIES, NULL);
 }

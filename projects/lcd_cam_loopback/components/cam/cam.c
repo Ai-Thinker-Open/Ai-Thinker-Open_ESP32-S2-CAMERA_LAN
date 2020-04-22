@@ -119,7 +119,7 @@ static void cam_config(cam_config_t *config)
     I2S0.conf2.cam_sync_fifo_reset = 0;
     I2S0.conf2.lcd_en = 1;
     I2S0.conf2.camera_en = 1;
-    I2S0.conf2.i_v_sync_filter_en = 0;
+    I2S0.conf2.i_v_sync_filter_en = 1;
     I2S0.conf2.i_v_sync_filter_thres = 1;
 
     I2S0.conf_chan.val = 0;
@@ -233,6 +233,9 @@ static void cam_start(void)
     I2S0.conf.rx_start = 1;
     I2S0.int_clr.in_suc_eof = 1;
     I2S0.int_ena.in_suc_eof = 1;
+    // 手动给第一帧vsync
+    gpio_matrix_in(cam_obj->vsync_pin, I2S0I_V_SYNC_IDX, false);
+    gpio_matrix_in(cam_obj->vsync_pin, I2S0I_V_SYNC_IDX, true);
 }
 
 typedef enum {
