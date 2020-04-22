@@ -454,6 +454,6 @@ int cam_init(const cam_config_t *config)
     } else {
         cam_obj->frame2_buffer_en = 0;
     }
-    xTaskCreate(cam_task, "cam_task", 1024 * 4, NULL, config->task_pri, NULL);
+    xTaskCreate(cam_task, "cam_task", config->task_stack, NULL, config->task_pri, NULL);
     return 0;
 }

@@ -25,6 +25,7 @@ typedef struct {
         uint32_t val;
     } size;
     uint32_t max_buffer_size; // DMA used
+    uint32_t task_stack;
     uint8_t task_pri;
     union {
         struct {

@@ -54,7 +54,7 @@ static void cam_task(void *arg)
         .pin_cs = LCD_CS,
         .pin_rst = LCD_RST,
         .pin_bk = LCD_BK,
-        .max_buffer_size = 32 * 1024,
+        .max_buffer_size = 2 * 1024,
         .horizontal = 2 // 2: UP, 3： DOWN
     };
 
@@ -75,8 +75,9 @@ static void cam_task(void *arg)
             .width = CAM_WIDTH,
             .high  = CAM_HIGH,
         },
-        .max_buffer_size = 32 * 1024,
-        .task_pri = 10
+        .max_buffer_size = 8 * 1024,
+        .task_stack = 1024,
+        .task_pri = configMAX_PRIORITIES
     };
 
     // 使用PingPang buffer，帧率更高， 也可以单独使用一个buffer节省内存
@@ -113,7 +114,7 @@ static void cam_task(void *arg)
         int w, h;
         uint8_t *img = jpeg_decode(cam_buf, &w, &h);
         if (img) {
-            printf("jpeg: w: %d, h: %d\n", w, h);
+            ESP_LOGI(TAG, "jpeg: w: %d, h: %d\n", w, h);
             lcd_set_index(0, 0, w - 1, h - 1);
             lcd_write_data(img, w * h * sizeof(uint16_t));
             free(img);
@@ -132,5 +133,5 @@ static void cam_task(void *arg)
 
 void app_main() 
 {
-    xTaskCreate(cam_task, "cam_task", 4096, NULL, 5, NULL);
+    xTaskCreate(cam_task, "cam_task", 2048, NULL, 5, NULL);
 }
