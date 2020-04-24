@@ -22,7 +22,7 @@ Perfectly supports open source GUI LittleVGL, providing a large number of rich a
     │   └── lcd_cam_loopback
     ├── README.md
     └── tools
-        └── esp-id
+        └── esp-idf
     ```
 
     * projects
