@@ -207,35 +207,52 @@ static void cam_set_pin(cam_config_t *config)
     ESP_LOGI(TAG, "cam_xclk_pin setup\n");
 }
 
-static void cam_stop(void)
+static void cam_vsync_intr_enable(uint8_t en)
 {
-    I2S0.conf2.cam_sync_fifo_reset = 1;
-    I2S0.conf.rx_start = 0;
+    if (en) {
+        gpio_intr_enable(cam_obj->vsync_pin);
+    } else {
+        gpio_intr_disable(cam_obj->vsync_pin);
+    }
+}
+
+static void cam_dma_stop(void)
+{
+    I2S0.int_ena.in_suc_eof = 0;
+    I2S0.int_clr.in_suc_eof = 1;
     I2S0.in_link.stop = 1;
+}
+
+static void cam_dma_start(void)
+{
+    I2S0.int_clr.in_suc_eof = 1;
+    I2S0.int_ena.in_suc_eof = 1;
     I2S0.conf.rx_reset = 1;
     I2S0.conf.rx_reset = 0;
     I2S0.lc_conf.in_rst = 1;
     I2S0.lc_conf.in_rst = 0;
     I2S0.conf.rx_fifo_reset = 1;
     I2S0.conf.rx_fifo_reset = 0;
-    I2S0.int_ena.in_suc_eof = 0;
-    I2S0.int_clr.in_suc_eof = 1;
-}
-
-static void cam_start(void)
-{
-    I2S0.int_clr.val = ~0;
-    I2S0.conf2.cam_sync_fifo_reset = 0;
     I2S0.in_link.start = 1;
     ets_delay_us(1);
-    I2S0.fifo_conf.dscr_en = 1;
-    I2S0.fifo_conf.dscr_en = 1;
     I2S0.conf.rx_start = 1;
-    I2S0.int_clr.in_suc_eof = 1;
-    I2S0.int_ena.in_suc_eof = 1;
     // 手动给第一帧vsync
     gpio_matrix_in(cam_obj->vsync_pin, I2S0I_V_SYNC_IDX, false);
     gpio_matrix_in(cam_obj->vsync_pin, I2S0I_V_SYNC_IDX, true);
+}
+
+void cam_stop(void)
+{
+    cam_vsync_intr_enable(0);
+    cam_dma_stop();
+}
+
+void cam_start(void)
+{
+    cam_vsync_intr_enable(1);
+    if(cam_obj->jpeg_mode == 0) {
+        cam_dma_start();
+    }
 }
 
 typedef enum {
@@ -250,10 +267,7 @@ static void cam_task(void *arg)
     int state = CAM_STATE_IDLE;
     cam_event_t cam_event = {0};
     frame_buffer_event_t frame_buffer_event = {0};
-    gpio_intr_enable(cam_obj->vsync_pin);
-    if (cam_obj->jpeg_mode == 0) {
-        cam_start();
-    }
+    xQueueReset(cam_obj->event_queue);
     while (1) {
         xQueueReceive(cam_obj->event_queue, (void *)&cam_event, portMAX_DELAY);
         if (cam_obj->jpeg_mode) {
@@ -262,12 +276,12 @@ static void cam_task(void *arg)
                     if (cam_event == CAM_VSYNC_EVENT) {
                         cam_obj->cnt = 0;
                         if (cam_obj->frame1_buffer_en) {
-                            cam_start();
-                            gpio_intr_disable(cam_obj->vsync_pin);
+                            cam_dma_start();
+                            cam_vsync_intr_enable(0);
                             state = 1;
                         } else if (cam_obj->frame2_buffer_en) {
-                            cam_start();
-                            gpio_intr_disable(cam_obj->vsync_pin);
+                            cam_dma_start();
+                            cam_vsync_intr_enable(0);
                             state = 2;
                         }
                     }
@@ -276,11 +290,11 @@ static void cam_task(void *arg)
                 case CAM_STATE_READ_BUF1: {
                     if (cam_event == CAM_IN_SUC_EOF_EVENT) {
                         if (cam_obj->cnt == 0) {
-                            gpio_intr_enable(cam_obj->vsync_pin); // 需要cam真正start接收到第一个buf数据再打开vsync中断
+                            cam_vsync_intr_enable(1); // 需要cam真正start接收到第一个buf数据再打开vsync中断
                         }
                         memcpy(&cam_obj->frame1_buffer[cam_obj->cnt * cam_obj->half_buffer_size], &cam_obj->buffer[(cam_obj->cnt % 2) * cam_obj->half_buffer_size], cam_obj->half_buffer_size);
                         if (cam_obj->frame1_buffer_en == 0) {
-                            cam_stop();
+                            cam_dma_stop();
                             frame_buffer_event.frame_buffer = cam_obj->frame1_buffer;
                             frame_buffer_event.len = (cam_obj->cnt + 1) * cam_obj->half_buffer_size;
                             xQueueSend(cam_obj->frame_buffer_queue, (void *)&frame_buffer_event, portMAX_DELAY);
@@ -297,11 +311,11 @@ static void cam_task(void *arg)
                 case CAM_STATE_READ_BUF2: {
                     if (cam_event == CAM_IN_SUC_EOF_EVENT) {
                         if (cam_obj->cnt == 0) {
-                            gpio_intr_enable(cam_obj->vsync_pin); // 需要cam真正start接收到第一个buf数据再打开vsync中断
+                            cam_vsync_intr_enable(1); // 需要cam真正start接收到第一个buf数据再打开vsync中断
                         }
                         memcpy(&cam_obj->frame2_buffer[cam_obj->cnt * cam_obj->half_buffer_size], &cam_obj->buffer[(cam_obj->cnt % 2) * cam_obj->half_buffer_size], cam_obj->half_buffer_size);
                         if (cam_obj->frame2_buffer_en == 0) {
-                            cam_stop();
+                            cam_dma_stop();
                             frame_buffer_event.frame_buffer = cam_obj->frame2_buffer;
                             frame_buffer_event.len = (cam_obj->cnt + 1) * cam_obj->half_buffer_size;
                             xQueueSend(cam_obj->frame_buffer_queue, (void *)&frame_buffer_event, portMAX_DELAY);

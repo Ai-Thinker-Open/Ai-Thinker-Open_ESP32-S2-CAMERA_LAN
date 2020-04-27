@@ -230,6 +230,7 @@ static void cam_task(void *arg)
     OV2640_ImageWin_Set(0, 0, 800, 600);
   	OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
     ESP_LOGI(TAG, "camera init done\n");
+    cam_start();
     while (1) {
         uint8_t *cam_buf = NULL;
         size_t recv_len = cam_take(&cam_buf);
