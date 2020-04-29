@@ -2,6 +2,9 @@ json = require('json')
 dump = require('dump')
 wifi = require('wifi')
 
+local WIFI_SSID       = "ESP32-S2-STA"
+local WIFI_PASSWORD   = "123456789"
+
 local LV_SYMBOL_LEFT  = "\xef\x81\x93"
 local LV_SYMBOL_RIGHT = "\xef\x81\x94"
 local LV_SYMBOL_UP    = "\xef\x81\xb7"
@@ -11,47 +14,47 @@ function lcd.print(str)
     return lcd.write('MSG', str)
 end
 
-lcd.write('BATT', '0')
-lcd.write('MEM', '0')
-lcd.write('CPU', '0')
-lcd.write('WIFI', '0')
-lcd.print('Connecting\nWiFi\n...')
-if (not wifi.start_sta('test', '123456789')) then
+lcd.write('BATT', 0)
+lcd.write('MEM', 0)
+lcd.write('CPU', 0)
+lcd.write('WIFI', 0)
+lcd.print('Connecting\nWiFi\n'..'#ff0000 '..WIFI_SSID..'#\n...')
+if (not wifi.start_sta(WIFI_SSID, WIFI_PASSWORD)) then
     print('Connect to AP and log in to http://192.168.1.1 and configure router information')
     lcd.print('Connect to AP and log in to http://192.168.1.1 and configure router information')
-    wifi.start_ap('ESP32-S2-HMI', '')
+    wifi.start_ap('ESP32-S2-AP', '')
 end
 httpd.start('ESP32-S2-HMI')
-lcd.write('WIFI', '1')
+lcd.write('WIFI', 1)
 assert(sys.sntp('ntp1.aliyun.com'))
 print(os.date("%Y-%m-%d %H:%M:%S"))
-lcd.print('Welcome\n #ff0000 XiongYu#')
+lcd.print('#ff0000 Welcome\n #')
 
-local info = {}
 local ram_file = ramf.malloc(200 * 1024)
 local last_1s = os.time()
-local last_30s = os.time() - 20
+local last_30s = os.time() - 25
 local sys_info = sys.info()
 local net_info = net.info()
+local sys_stats = sys.stats(1000)
 while (1) do
     if (os.difftime (os.time(), last_1s) >= 1) then
         sys_info = sys.info()
         net_info = net.info()
         lcd.write('STATE', os.date("%H:%M:%S"))
         if (net_info.ip.sta == '0.0.0.0') then
-            lcd.write('WIFI', '0')
+            lcd.write('WIFI', 0)
         else
-            lcd.write('WIFI', '1')
+            lcd.write('WIFI', 1)
         end
-        lcd.write('MEM', string.format('%d', math.floor(sys_info.heap / 1024)))
-        if (sys_info.cpu) then
-            lcd.write('CPU', sys_info.cpu)
+        lcd.write('MEM', sys_info.heap / 1024)
+        if (sys_stats) then
+            lcd.write('CPU', 100 - sys_stats.IDLE0.load)
         end
         print(dump.table(net_info))
         print(dump.table(sys_info))
+        print(dump.table(sys_stats))
         last_1s = os.time()
     end
-    sys.yield()
 
     if (os.difftime (os.time(), last_30s) >= 30) then
         local display = '#FF6100 '..os.date("%Y-%m-%d")..'#\n'..'#00BFFF '..net_info.ip.sta..'#\n'..'#FFC0CB '..net_info.mac.sta..'#'
@@ -73,5 +76,6 @@ while (1) do
         lcd.print(display)
         last_30s = os.time()
     end
-    sys.yield()
+
+    sys_stats = sys.stats(1000)
 end
