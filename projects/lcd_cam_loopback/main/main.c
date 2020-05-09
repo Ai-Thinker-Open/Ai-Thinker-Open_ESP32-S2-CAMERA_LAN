@@ -12,6 +12,7 @@
 #include "esp_log.h"
 #include "cam.h"
 #include "ov2640.h"
+#include "sccb.h"
 #include "lcd.h"
 #include "jpeg.h"
 
@@ -43,6 +44,9 @@ static const char *TAG = "main";
 #define CAM_D5    GPIO_NUM_40
 #define CAM_D6    GPIO_NUM_21
 #define CAM_D7    GPIO_NUM_38
+
+#define CAM_SCL   GPIO_NUM_7
+#define CAM_SDA   GPIO_NUM_8
 
 static void cam_task(void *arg)
 {
@@ -85,6 +89,9 @@ static void cam_task(void *arg)
     cam_config.frame2_buffer = (uint8_t *)heap_caps_malloc(CAM_WIDTH * CAM_HIGH * 2 * sizeof(uint8_t), MALLOC_CAP_SPIRAM);
 
     cam_init(&cam_config);
+    SCCB_Init(CAM_SDA, CAM_SCL);
+    uint8_t id = SCCB_Probe();
+    ESP_LOGI(TAG, "sensor_id: 0x%x\n", id);
     if (OV2640_Init(0, 1) == 1) {
         vTaskDelete(NULL);
         return;

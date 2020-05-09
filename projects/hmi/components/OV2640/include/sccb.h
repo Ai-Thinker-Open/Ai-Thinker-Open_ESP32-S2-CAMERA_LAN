@@ -1,3 +1,12 @@
+/*
+ * This file is part of the OpenMV project.
+ * Copyright (c) 2013/2014 Ibrahim Abdelkader <i.abdalkader@gmail.com>
+ * This work is licensed under the MIT license, see the file LICENSE for details.
+ *
+ * SCCB (I2C like) driver.
+ *
+ */
+
 #pragma once
 
 #include <stdio.h>
@@ -7,13 +16,12 @@
 extern "C" {
 #endif
 
-#define SCCB_ID   			0X60  			//OV2640的ID
-
-void SCCB_Init(void);
-uint8_t SCCB_WR_Byte(uint8_t dat);
-uint8_t SCCB_RD_Byte(void);
-uint8_t SCCB_WR_Reg(uint8_t reg, uint8_t data);
-uint8_t SCCB_RD_Reg(uint8_t reg);
+int SCCB_Init(int pin_sda, int pin_scl);
+uint8_t SCCB_Probe();
+uint8_t SCCB_Read(uint8_t slv_addr, uint8_t reg);
+uint8_t SCCB_Write(uint8_t slv_addr, uint8_t reg, uint8_t data);
+uint8_t SCCB_Read16(uint8_t slv_addr, uint16_t reg);
+uint8_t SCCB_Write16(uint8_t slv_addr, uint16_t reg, uint8_t data);
 
 #ifdef __cplusplus
 }
