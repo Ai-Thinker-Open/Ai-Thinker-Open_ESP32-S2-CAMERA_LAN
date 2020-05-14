@@ -256,10 +256,10 @@ static void cam_task(void *arg)
             sensor.set_pixformat(&sensor, PIXFORMAT_RGB565);
         }
         // sensor.set_framesize(&sensor, FRAMESIZE_QVGA);
-        sensor.set_res_raw(&sensor, 0, 0, 2079, 1547, 0, 0, 2300, 1564, CAM_WIDTH, CAM_HIGH, true, true);
+        sensor.set_res_raw(&sensor, 0, 0, 2079, 1547, 8, 2, 1920, 800, CAM_WIDTH, CAM_HIGH, true, true);
         sensor.set_vflip(&sensor, 1);
         sensor.set_hmirror(&sensor, 1);
-        sensor.set_pll(&sensor, false, 20, 1, 0, false, 0, true, 5);
+        sensor.set_pll(&sensor, false, 10, 1, 0, false, 0, true, 5); // 13 fps
     } else {
         ESP_LOGE(TAG, "sensor is temporarily not supported\n");
         goto fail;
