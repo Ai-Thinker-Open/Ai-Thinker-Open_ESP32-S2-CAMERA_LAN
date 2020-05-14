@@ -13,6 +13,8 @@
 #include "lcd.h"
 #include "cam.h"
 #include "ov2640.h"
+#include "ov3660.h"
+#include "sensor.h"
 #include "sccb.h"
 #include "jpeg.h"
 #include "lvgl.h"
@@ -220,22 +222,49 @@ static void cam_task(void *arg)
     cam_config.frame2_buffer = (uint8_t *)heap_caps_malloc(CAM_WIDTH * CAM_HIGH * 2 * sizeof(uint8_t), MALLOC_CAP_SPIRAM);
 
     cam_init(&cam_config);
+
+    sensor_t sensor;
     SCCB_Init(CAM_SDA, CAM_SCL);
-    uint8_t id = SCCB_Probe();
-    ESP_LOGI(TAG, "sensor_id: 0x%x\n", id);
-    if (OV2640_Init(0, 0) == 1) {
-        vTaskDelete(NULL);
-        return;
-    }
-    if (cam_config.mode.jpeg) {
-        OV2640_JPEG_Mode();
-    } else {
-        OV2640_RGB565_Mode(false);	//RGB565模式
-    }
-    
-    OV2640_ImageSize_Set(800, 600);
-    OV2640_ImageWin_Set(0, 0, 800, 600);
+    sensor.slv_addr = SCCB_Probe();
+    ESP_LOGI(TAG, "sensor_id: 0x%x\n", sensor.slv_addr);
+    if (sensor.slv_addr == 0x30) { // OV2640
+        if (OV2640_Init(0, 1) != 0) {
+            goto fail;
+        }
+        if (cam_config.mode.jpeg) {
+            OV2640_JPEG_Mode();
+        } else {
+            OV2640_RGB565_Mode(false);	//RGB565模式
+        }
+        
+        OV2640_ImageSize_Set(800, 600);
+        OV2640_ImageWin_Set(0, 0, 800, 600);
+        OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
   	OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
+        OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
+  	OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
+        OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
+    } else if (sensor.slv_addr == 0x3C) { // OV3660
+        ov3660_init(&sensor);
+        sensor.init_status(&sensor);
+        if (sensor.reset(&sensor) != 0) {
+            goto fail;
+        }
+        if (cam_config.mode.jpeg) {
+            sensor.set_pixformat(&sensor, PIXFORMAT_JPEG);
+        } else {
+            sensor.set_pixformat(&sensor, PIXFORMAT_RGB565);
+        }
+        // sensor.set_framesize(&sensor, FRAMESIZE_QVGA);
+        sensor.set_res_raw(&sensor, 0, 0, 2079, 1547, 0, 0, 2300, 1564, CAM_WIDTH, CAM_HIGH, true, true);
+        sensor.set_vflip(&sensor, 1);
+        sensor.set_hmirror(&sensor, 1);
+        sensor.set_pll(&sensor, false, 20, 1, 0, false, 0, true, 5);
+    } else {
+        ESP_LOGE(TAG, "sensor is temporarily not supported\n");
+        goto fail;
+    }
+
     ESP_LOGI(TAG, "camera init done\n");
     cam_start();
     while (1) {
@@ -269,12 +298,17 @@ static void cam_task(void *arg)
         gpio_set_level(LCD_BK, 1);
         gpio_set_level(LCD_BK, 0);  
     }
+
+fail:
+    free(cam_config.frame1_buffer);
+    free(cam_config.frame2_buffer);
+    cam_deinit();
     vTaskDelete(NULL);
 }
 
 void app_main()
 {
-    xTaskCreate(cam_task, "cam_task", 2048, NULL, configMAX_PRIORITIES, NULL);
+    xTaskCreate(cam_task, "cam_task", 3072, NULL, configMAX_PRIORITIES, NULL);
     esp_log_level_set("*", ESP_LOG_ERROR);
     xTaskCreate(lua_task, "lua_task", 10240, NULL, 5, NULL);
 }
