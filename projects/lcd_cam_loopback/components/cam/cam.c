@@ -46,6 +46,8 @@ typedef struct {
     uint8_t frame2_buffer_en;
     uint8_t jpeg_mode;
     uint8_t vsync_pin;
+    uint8_t vsync_invert;
+    uint8_t hsync_invert;
     QueueHandle_t event_queue;
     QueueHandle_t frame_buffer_queue;
     TaskHandle_t task_handle;
@@ -153,7 +155,7 @@ static void cam_config(cam_config_t *config)
 static void cam_set_pin(cam_config_t *config)
 {
     gpio_config_t io_conf;
-    io_conf.intr_type = GPIO_PIN_INTR_NEGEDGE;
+    io_conf.intr_type = config->vsync_invert ? GPIO_PIN_INTR_NEGEDGE : GPIO_PIN_INTR_POSEDGE;
     io_conf.pin_bit_mask = 1 << config->pin.vsync; 
     io_conf.mode = GPIO_MODE_INPUT;
     io_conf.pull_up_en = 1;
@@ -170,12 +172,12 @@ static void cam_set_pin(cam_config_t *config)
     PIN_FUNC_SELECT(GPIO_PIN_MUX_REG[config->pin.vsync], PIN_FUNC_GPIO);
     gpio_set_direction(config->pin.vsync, GPIO_MODE_INPUT);
     gpio_set_pull_mode(config->pin.vsync, GPIO_FLOATING);
-    gpio_matrix_in(config->pin.vsync, I2S0I_V_SYNC_IDX, true);
+    gpio_matrix_in(config->pin.vsync, I2S0I_V_SYNC_IDX, config->vsync_invert);
 
     PIN_FUNC_SELECT(GPIO_PIN_MUX_REG[config->pin.hsync], PIN_FUNC_GPIO);
     gpio_set_direction(config->pin.hsync, GPIO_MODE_INPUT);
     gpio_set_pull_mode(config->pin.hsync, GPIO_FLOATING);
-    gpio_matrix_in(config->pin.hsync, I2S0I_H_SYNC_IDX, false);
+    gpio_matrix_in(config->pin.hsync, I2S0I_H_SYNC_IDX, config->hsync_invert);
 
     for(int i = 0; i < config->bit_width; i++) {
         PIN_FUNC_SELECT(GPIO_PIN_MUX_REG[config->pin_data[i]], PIN_FUNC_GPIO);
@@ -242,8 +244,8 @@ static void cam_dma_start(void)
         I2S0.conf.rx_start = 1;
         if(cam_obj->jpeg_mode) {
             // 手动给第一帧vsync
-            gpio_matrix_in(cam_obj->vsync_pin, I2S0I_V_SYNC_IDX, false);
-            gpio_matrix_in(cam_obj->vsync_pin, I2S0I_V_SYNC_IDX, true);
+            gpio_matrix_in(cam_obj->vsync_pin, I2S0I_V_SYNC_IDX, !cam_obj->vsync_invert);
+            gpio_matrix_in(cam_obj->vsync_pin, I2S0I_V_SYNC_IDX, cam_obj->vsync_invert);
         }
     }
 
@@ -452,6 +454,8 @@ int cam_init(const cam_config_t *config)
     cam_obj->frame2_buffer = config->frame2_buffer;
     cam_obj->jpeg_mode = config->mode.jpeg;
     cam_obj->vsync_pin = config->pin.vsync;
+    cam_obj->vsync_invert = config->vsync_invert;
+    cam_obj->hsync_invert = config->hsync_invert;
     cam_set_pin(config);
     cam_config(config);
     cam_dma_config(config);

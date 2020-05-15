@@ -77,6 +77,8 @@ static void cam_task(void *arg)
             .hsync = CAM_HSYNC,
         },
         .pin_data = {CAM_D0, CAM_D1, CAM_D2, CAM_D3, CAM_D4, CAM_D5, CAM_D6, CAM_D7},
+        .vsync_invert = true,
+        .hsync_invert = false,
         .size = {
             .width = CAM_WIDTH,
             .high  = CAM_HIGH,
@@ -124,6 +126,7 @@ static void cam_task(void *arg)
         sensor.set_res_raw(&sensor, 0, 0, 2079, 1547, 8, 2, 1920, 800, CAM_WIDTH, CAM_HIGH, true, true);
         sensor.set_vflip(&sensor, 1);
         sensor.set_hmirror(&sensor, 1);
+        sensor.set_quality(&sensor, 16);
         sensor.set_pll(&sensor, false, 20, 1, 0, false, 0, true, 5); // 52 fps
     } else {
         ESP_LOGE(TAG, "sensor is temporarily not supported\n");
