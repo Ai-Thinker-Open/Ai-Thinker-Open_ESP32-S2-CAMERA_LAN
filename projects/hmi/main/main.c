@@ -208,6 +208,8 @@ static void cam_task(void *arg)
             .hsync = CAM_HSYNC,
         },
         .pin_data = {CAM_D0, CAM_D1, CAM_D2, CAM_D3, CAM_D4, CAM_D5, CAM_D6, CAM_D7},
+        .vsync_invert = true,
+        .hsync_invert = false,
         .size = {
             .width = CAM_WIDTH,
             .high  = CAM_HIGH,
@@ -239,10 +241,6 @@ static void cam_task(void *arg)
         
         OV2640_ImageSize_Set(800, 600);
         OV2640_ImageWin_Set(0, 0, 800, 600);
-        OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
-  	OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
-        OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
-  	OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
         OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
     } else if (sensor.slv_addr == 0x3C) { // OV3660
         ov3660_init(&sensor);

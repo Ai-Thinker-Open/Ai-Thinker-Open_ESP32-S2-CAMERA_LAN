@@ -17,6 +17,8 @@ typedef struct {
         uint32_t val;
     } pin;
     uint8_t pin_data[16];
+    uint8_t vsync_invert;
+    uint8_t hsync_invert;
     union {
         struct {
             uint32_t width:   16;
