@@ -72,12 +72,17 @@ void IRAM_ATTR cam_isr(void *arg)
     }
 }
 
+#include "hal/gpio_ll.h"
 void IRAM_ATTR cam_vsync_isr(void *arg)
 {
     cam_event_t cam_event = {0};
     BaseType_t HPTaskAwoken = pdFALSE;
-    cam_event = CAM_VSYNC_EVENT;
-    xQueueSendFromISR(cam_obj->event_queue, (void *)&cam_event, &HPTaskAwoken);
+    // filter
+    ets_delay_us(1);
+    if (gpio_ll_get_level(&GPIO, cam_obj->vsync_pin) == !cam_obj->vsync_invert) {
+        cam_event = CAM_VSYNC_EVENT;
+        xQueueSendFromISR(cam_obj->event_queue, (void *)&cam_event, &HPTaskAwoken);
+    }
 
     if(HPTaskAwoken == pdTRUE) {
         portYIELD_FROM_ISR();
@@ -150,15 +155,17 @@ static void cam_config(cam_config_t *config)
     I2S0.int_clr.val = ~0;
 
     I2S0.lc_conf.check_owner = 0;
+    I2S0.conf.rx_start = 1;
 }
 
 static void cam_set_pin(cam_config_t *config)
 {
-    gpio_config_t io_conf;
+    gpio_config_t io_conf = {0};
     io_conf.intr_type = config->vsync_invert ? GPIO_PIN_INTR_NEGEDGE : GPIO_PIN_INTR_POSEDGE;
     io_conf.pin_bit_mask = 1 << config->pin.vsync; 
     io_conf.mode = GPIO_MODE_INPUT;
     io_conf.pull_up_en = 1;
+    io_conf.pull_down_en = 0;
     gpio_config(&io_conf);
     gpio_install_isr_service(0);
     gpio_isr_handler_add(config->pin.vsync, cam_vsync_isr, NULL);
@@ -220,7 +227,7 @@ static void cam_vsync_intr_enable(uint8_t en)
 
 static void cam_dma_stop(void)
 {
-    if (I2S0.conf.rx_start == 1) {
+    if (I2S0.int_ena.in_suc_eof == 1) {
         I2S0.conf.rx_start = 0;
         I2S0.int_ena.in_suc_eof = 0;
         I2S0.int_clr.in_suc_eof = 1;
@@ -230,17 +237,20 @@ static void cam_dma_stop(void)
 
 static void cam_dma_start(void)
 {
-    if (I2S0.conf.rx_start == 0) {
+    if (I2S0.int_ena.in_suc_eof == 0) {
         I2S0.int_clr.in_suc_eof = 1;
         I2S0.int_ena.in_suc_eof = 1;
         I2S0.conf.rx_reset = 1;
         I2S0.conf.rx_reset = 0;
-        I2S0.lc_conf.in_rst = 1;
-        I2S0.lc_conf.in_rst = 0;
         I2S0.conf.rx_fifo_reset = 1;
         I2S0.conf.rx_fifo_reset = 0;
+        I2S0.lc_conf.in_rst = 1;
+        I2S0.lc_conf.in_rst = 0;
+        I2S0.lc_conf.ahbm_fifo_rst = 1;
+        I2S0.lc_conf.ahbm_fifo_rst = 0;
+        I2S0.lc_conf.ahbm_rst = 1;
+        I2S0.lc_conf.ahbm_rst = 0;
         I2S0.in_link.start = 1;
-        ets_delay_us(1);
         I2S0.conf.rx_start = 1;
         if(cam_obj->jpeg_mode) {
             // 手动给第一帧vsync
@@ -248,7 +258,6 @@ static void cam_dma_start(void)
             gpio_matrix_in(cam_obj->vsync_pin, I2S0I_V_SYNC_IDX, cam_obj->vsync_invert);
         }
     }
-
 }
 
 void cam_stop(void)
@@ -280,16 +289,16 @@ static void cam_task(void *arg)
         switch (state) {
             case CAM_STATE_IDLE: {
                 if (cam_event == CAM_VSYNC_EVENT) { 
-                    cam_obj->cnt = 0;
                     if (cam_obj->frame1_buffer_en) {
                         cam_dma_start();
                         cam_vsync_intr_enable(0);
-                        state = 1;
+                        state = CAM_STATE_READ_BUF1;
                     } else if (cam_obj->frame2_buffer_en) {
                         cam_dma_start();
                         cam_vsync_intr_enable(0);
-                        state = 2;
+                        state = CAM_STATE_READ_BUF2;
                     }
+                    cam_obj->cnt = 0;
                 }
             }
             break;
@@ -315,7 +324,7 @@ static void cam_task(void *arg)
                         frame_buffer_event.frame_buffer = cam_obj->frame1_buffer;
                         frame_buffer_event.len = (cam_obj->cnt + 1) * cam_obj->half_buffer_size;
                         xQueueSend(cam_obj->frame_buffer_queue, (void *)&frame_buffer_event, portMAX_DELAY);
-                        state = 0;
+                        state = CAM_STATE_IDLE;
                     } else {
                         cam_obj->cnt++;
                     }
@@ -348,7 +357,7 @@ static void cam_task(void *arg)
                         frame_buffer_event.frame_buffer = cam_obj->frame2_buffer;
                         frame_buffer_event.len = (cam_obj->cnt + 1) * cam_obj->half_buffer_size;
                         xQueueSend(cam_obj->frame_buffer_queue, (void *)&frame_buffer_event, portMAX_DELAY);
-                        state = 0;
+                        state = CAM_STATE_IDLE;
                     } else {
                         cam_obj->cnt++;
                     }

@@ -23,8 +23,6 @@
 
 static const char *TAG = "main";
 
-#define JPEG_MODE 0
-
 #define CAM_WIDTH   (GUI_CAM_WIDTH)
 #define CAM_HIGH    (GUI_CAM_HIGH)
 
@@ -53,7 +51,6 @@ static const char *TAG = "main";
 #define CAM_SDA   GPIO_NUM_8
 
 static lv_disp_t *disp[1];
-// static lv_indev_t *indev[1];
 
 static void IRAM_ATTR lv_disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
 {
@@ -199,7 +196,7 @@ static void cam_task(void *arg)
 {
     cam_config_t cam_config = {
         .bit_width = 8,
-        .mode.jpeg = JPEG_MODE,
+        .mode.jpeg = false,
         .xclk_fre = 8 * 1000 * 1000,
         .pin = {
             .xclk  = CAM_XCLK,
@@ -233,12 +230,7 @@ static void cam_task(void *arg)
         if (OV2640_Init(0, 1) != 0) {
             goto fail;
         }
-        if (cam_config.mode.jpeg) {
-            OV2640_JPEG_Mode();
-        } else {
-            OV2640_RGB565_Mode(false);	//RGB565模式
-        }
-        
+        OV2640_RGB565_Mode(false);	//RGB565模式
         OV2640_ImageSize_Set(800, 600);
         OV2640_ImageWin_Set(0, 0, 800, 600);
         OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH); 
@@ -248,12 +240,9 @@ static void cam_task(void *arg)
         if (sensor.reset(&sensor) != 0) {
             goto fail;
         }
-        if (cam_config.mode.jpeg) {
-            sensor.set_pixformat(&sensor, PIXFORMAT_JPEG);
-        } else {
-            sensor.set_pixformat(&sensor, PIXFORMAT_RGB565);
-        }
-        // sensor.set_framesize(&sensor, FRAMESIZE_QVGA);
+        sensor.set_pixformat(&sensor, PIXFORMAT_RGB565);
+        // totalX 变小，帧率提高
+        // totalY 变小，帧率提高vsync 变短
         sensor.set_res_raw(&sensor, 0, 0, 2079, 1547, 8, 2, 1920, 800, CAM_WIDTH, CAM_HIGH, true, true);
         sensor.set_vflip(&sensor, 1);
         sensor.set_hmirror(&sensor, 1);
@@ -264,33 +253,16 @@ static void cam_task(void *arg)
     }
 
     ESP_LOGI(TAG, "camera init done\n");
+    vTaskDelay(100 / portTICK_RATE_MS);
     cam_start();
     while (1) {
         uint8_t *cam_buf = NULL;
         size_t recv_len = cam_take(&cam_buf);
-#if JPEG_MODE
-#if DEBUG
-        printf("total_len: %d\n", recv_len);
-        for (int x = 0; x < 10; x++) {
-            ets_printf("%d ", cam_buf[x]);
-        }
-        ets_printf("\n");
-#endif
-
-        int w, h;
-        uint8_t *img = jpeg_decode(cam_buf, &w, &h);
-        if (img) {
-            ESP_LOGI(TAG, "jpeg: w: %d, h: %d\n", w, h);
-            gui_set_camera(img, w * h * sizeof(uint16_t), 100 / portTICK_RATE_MS);
-            free(img);
-        }
-#else
         if (recv_len == CAM_WIDTH * CAM_HIGH * 2) {
             gui_set_camera(cam_buf, recv_len, 100 / portTICK_RATE_MS);
         } else {
-            printf("len: %d\n", recv_len);
+            ESP_LOGE(TAG, "cam len: %d\n", recv_len);
         }
-#endif
         cam_give(cam_buf);   
         // 使用逻辑分析仪观察帧率
         gpio_set_level(LCD_BK, 1);
@@ -306,7 +278,7 @@ fail:
 
 void app_main()
 {
-    xTaskCreate(cam_task, "cam_task", 3072, NULL, configMAX_PRIORITIES, NULL);
+    xTaskCreate(cam_task, "cam_task", 3072, NULL, 5, NULL);
     esp_log_level_set("*", ESP_LOG_ERROR);
     xTaskCreate(lua_task, "lua_task", 10240, NULL, 5, NULL);
 }
