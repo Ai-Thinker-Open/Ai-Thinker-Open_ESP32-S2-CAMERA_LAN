@@ -77,6 +77,8 @@ static void cam_task(void *arg)
             .hsync = CAM_HSYNC,
         },
         .pin_data = {CAM_D0, CAM_D1, CAM_D2, CAM_D3, CAM_D4, CAM_D5, CAM_D6, CAM_D7},
+        .vsync_invert = true,
+        .hsync_invert = false,
         .size = {
             .width = CAM_WIDTH,
             .high  = CAM_HIGH,
@@ -120,17 +122,19 @@ static void cam_task(void *arg)
         } else {
             sensor.set_pixformat(&sensor, PIXFORMAT_RGB565);
         }
-        // sensor.set_framesize(&sensor, FRAMESIZE_QVGA);
+        // totalX 变小，帧率提高
+        // totalY 变小，帧率提高vsync 变短
         sensor.set_res_raw(&sensor, 0, 0, 2079, 1547, 8, 2, 1920, 800, CAM_WIDTH, CAM_HIGH, true, true);
         sensor.set_vflip(&sensor, 1);
         sensor.set_hmirror(&sensor, 1);
-        sensor.set_pll(&sensor, false, 20, 1, 0, false, 0, true, 5); // 52 fps
+        sensor.set_pll(&sensor, false, 15, 1, 0, false, 0, true, 5); // 39 fps
     } else {
         ESP_LOGE(TAG, "sensor is temporarily not supported\n");
         goto fail;
     }
 
     ESP_LOGI(TAG, "camera init done\n");
+    vTaskDelay(100 / portTICK_RATE_MS);
     cam_start();
     while (1) {
         uint8_t *cam_buf = NULL;
@@ -171,5 +175,5 @@ fail:
 
 void app_main() 
 {
-    xTaskCreate(cam_task, "cam_task", 4096, NULL, configMAX_PRIORITIES, NULL);
+    xTaskCreate(cam_task, "cam_task", 4096, NULL, 5, NULL);
 }
