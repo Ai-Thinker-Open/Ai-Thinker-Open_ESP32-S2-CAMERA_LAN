@@ -6,8 +6,8 @@ extern "C" {
 
 #include "lvgl.h"
 
-#define GUI_CAM_WIDTH   (248)
-#define GUI_CAM_HIGH    (248)
+#define GUI_CAM_WIDTH   (800)//(320)//(248)
+#define GUI_CAM_HIGH    (600)//(240)//(248)
 
 typedef enum {
     BATTERY_FULL,

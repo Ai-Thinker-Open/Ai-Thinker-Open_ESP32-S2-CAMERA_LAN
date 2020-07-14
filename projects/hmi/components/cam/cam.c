@@ -440,7 +440,7 @@ void cam_deinit()
     if (!cam_obj) {
         return;
     }
-    cam_stop();
+    //cam_stop();
     esp_intr_free(cam_obj->intr_handle);
     vTaskDelete(cam_obj->task_handle);
     vQueueDelete(cam_obj->event_queue);
@@ -485,7 +485,15 @@ int cam_init(const cam_config_t *config)
     } else {
         cam_obj->frame2_buffer_en = 0;
     }
-    esp_intr_alloc(ETS_I2S0_INTR_SOURCE, 0, cam_isr, NULL, &cam_obj->intr_handle);
-    xTaskCreate(cam_task, "cam_task", config->task_stack, NULL, config->task_pri, &cam_obj->task_handle);
+    if(ESP_OK != esp_intr_alloc(ETS_I2S0_INTR_SOURCE, 0, cam_isr, NULL, &cam_obj->intr_handle))
+	{
+		ESP_LOGI(TAG, "intr alloc fail\n");
+		return -1;
+	}
+    if(NULL==xTaskCreate(cam_task, "cam_task", config->task_stack, NULL, config->task_pri, &cam_obj->task_handle))
+    {
+    	ESP_LOGE(TAG, "Failed to camera task");
+	 	return -1;
+	}
     return 0;
 }
