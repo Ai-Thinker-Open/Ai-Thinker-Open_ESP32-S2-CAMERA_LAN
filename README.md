@@ -1,6 +1,6 @@
 
-
 _ESP32_S2 is a new low cost, low power Internet of Things (IOT) chip with Xtensa 32-bit LX7 single-core processor with a main frequency of up to 240MHz and rich peripheral interfaces.This case USES Ai-Thinker's ESP32-S2 development board, which shows how to use the camera separately, based on the example for ESP32_S2_HMI_
+
 
 ## pin config
 ![esp32-s2pin.png](docs/esp32-s2pin.png)
