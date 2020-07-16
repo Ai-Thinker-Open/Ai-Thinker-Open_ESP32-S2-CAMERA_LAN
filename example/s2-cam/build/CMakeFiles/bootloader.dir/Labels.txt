@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/CMakeFiles/bootloader
+/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/CMakeFiles/bootloader.rule
+/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/CMakeFiles/bootloader-complete.rule
+/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule

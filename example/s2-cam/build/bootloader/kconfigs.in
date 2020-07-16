@@ -1,0 +1,5 @@
+source "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/efuse/Kconfig"
+source "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/esp32s2/Kconfig"
+source "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/esp_common/Kconfig"
+source "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/log/Kconfig"
+source "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/spi_flash/Kconfig"

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		},
+		{
+			"file" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}

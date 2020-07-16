@@ -2,11 +2,11 @@
 	path = tools/esp-idf
 	url = https://github.com/espressif/esp-idf
 [submodule "projects/hmi/components/esp_lua"]
-	path = projects/hmi/components/esp_lua
+	path = example/s2-cam/components/esp_lua
 	url = https://github.com/xiongyumail/esp_lua.git
-[submodule "projects/hmi/components/esp_lua_lib"]
+[submodule "example/s2-cam/components/esp_lua_lib"]
 	path = projects/hmi/components/esp_lua_lib
 	url = https://github.com/xiongyumail/esp_lua_lib.git
-[submodule "projects/hmi/components/littlevgl/lvgl"]
+[submodule "example/s2-cam/components/littlevgl/lvgl"]
 	path = projects/hmi/components/littlevgl/lvgl
 	url = https://github.com/littlevgl/lvgl
