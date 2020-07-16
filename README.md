@@ -1,11 +1,9 @@
-# _ESP32-S2-HMI_
 
-_HMI evaluation suite for new low power, low cost and secure Internet of Things chip ESP32-S2. ESP32-S2 chip is equipped with Xtensa 32-bit LX7 single-core processor.
-Working frequency up to 240 MHz, providing a wealth of peripheral interfaces, including SPI, I2S, UART, I2C, LED PWM, PCNT, LCD interface, Camera interface, ADC, DAC,
-Touch sensors, temperature sensors and up to 43 GPIOs. Supports high-resolution LCD displays and Camera Sensor, as well as a variety of extension options.
-Perfectly supports open source GUI LittleVGL, providing a large number of rich and easy-to-use GUI components and design examples._
 
-![pin_conf.png](docs/pin_conf.png)
+_ESP32_S2 is a new low cost, low power Internet of Things (IOT) chip with Xtensa 32-bit LX7 single-core processor with a main frequency of up to 240MHz and rich peripheral interfaces.This case USES Ai-Thinker's ESP32-S2 development board, which shows how to use the camera separately, based on the example for ESP32_S2_HMI_
+
+## pin config
+![esp32-s2pin.png](docs/esp32-s2pin.png)
 
 ## Contents
 
@@ -16,16 +14,15 @@ Perfectly supports open source GUI LittleVGL, providing a large number of rich a
     ├── docs
     │   ├── logo.png
     │   ├── OV2640_DS+(2.2).pdf
-    │   └── pin_conf.png
-    ├── projects
-    │   ├── hmi
-    │   └── lcd_cam_loopback
+    │   └── esp32-s2pin.png
+    ├── example
+    │   └──s2-cam
     ├── README.md
     └── tools
         └── esp-idf
     ```
 
-    * projects
+    * example
 
       Development examples
 
@@ -45,10 +42,13 @@ You can follow the steps below to set up the development environment, or directl
 
 * clone
 
+Example of a camera
+
   ```bash
-  git clone --recursive https://github.com/xiongyumail/esp32-s2-hmi
-  cd esp32-s2-hmi
+  git clone --recursive https://github.com/8888github8888/esp_s2_cam
+  cd esp32-s2-cam
   ```
+  Or an example of HMI https://github.com/xiongyumail/esp32-s2-hmi
 
   * note
 
