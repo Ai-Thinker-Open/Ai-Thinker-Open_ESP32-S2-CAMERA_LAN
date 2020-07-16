@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: esp32-s2-hmi
+# Project: esp32-s2-cam
 # Configuration: 
 # =============================================================================
 # =============================================================================
@@ -22,7 +22,7 @@ rule CUSTOM_COMMAND
 #############################################
 # Rule for compiling C files.
 
-rule C_COMPILER__esp32-s2-hmi.2eelf
+rule C_COMPILER__esp32-s2-cam.2eelf
   depfile = $DEP_FILE
   deps = gcc
   command = /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-gcc  $DEFINES $INCLUDES $FLAGS -MMD -MT $out -MF $DEP_FILE -o $out   -c $in
@@ -32,7 +32,7 @@ rule C_COMPILER__esp32-s2-hmi.2eelf
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__esp32-s2-hmi.2eelf
+rule CXX_EXECUTABLE_LINKER__esp32-s2-cam.2eelf
   command = $PRE_LINK && /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-g++   $FLAGS  $LINK_FLAGS $in  -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
@@ -1517,7 +1517,7 @@ rule CXX_STATIC_LIBRARY_LINKER____idf_sensors
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/bin/cmake -H/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi -B/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build
+  command = /usr/bin/cmake -H/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam -B/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build
   description = Re-running CMake...
   generator = 1
 

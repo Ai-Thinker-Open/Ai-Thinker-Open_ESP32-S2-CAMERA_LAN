@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/soc
+# Install script for directory: /mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/soc
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,8 +29,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/soc/src/esp32s2/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/soc/soc/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/soc/src/esp32s2/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/soc/soc/cmake_install.cmake")
 
 endif()
 

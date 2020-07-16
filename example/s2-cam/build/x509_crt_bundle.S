@@ -1,4 +1,4 @@
-/* * Data converted from /mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

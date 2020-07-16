@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/mbedtls/mbedtls
+# Install script for directory: /mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/mbedtls/mbedtls
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,8 +29,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
 
 endif()
 

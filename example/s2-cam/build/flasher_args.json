@@ -11,12 +11,12 @@
         "0x8000" : "partition_table/partition-table.bin",
         "0x1d000" : "ota_data_initial.bin",
         "0x1000" : "bootloader/bootloader.bin",
-        "0x20000" : "esp32-s2-hmi.bin"
+        "0x20000" : "esp32-s2-cam.bin"
     },
     "partition_table" : { "offset" : "0x8000", "file" : "partition_table/partition-table.bin" },
     "otadata" : { "offset" : "0x1d000", "file" : "ota_data_initial.bin" },
     "bootloader" : { "offset" : "0x1000", "file" : "bootloader/bootloader.bin" },
-    "app" : { "offset" : "0x20000", "file" : "esp32-s2-hmi.bin" },
+    "app" : { "offset" : "0x20000", "file" : "esp32-s2-cam.bin" },
     "extra_esptool_args" : {
         "after"  : "hard_reset",
         "before" : "default_reset",

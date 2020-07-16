@@ -5,8 +5,8 @@
 	path = example/s2-cam/components/esp_lua
 	url = https://github.com/xiongyumail/esp_lua.git
 [submodule "example/s2-cam/components/esp_lua_lib"]
-	path = projects/hmi/components/esp_lua_lib
+	path = example/s2-cam/components/esp_lua_lib
 	url = https://github.com/xiongyumail/esp_lua_lib.git
 [submodule "example/s2-cam/components/littlevgl/lvgl"]
-	path = projects/hmi/components/littlevgl/lvgl
+	path = example/s2-cam/components/littlevgl/lvgl
 	url = https://github.com/littlevgl/lvgl

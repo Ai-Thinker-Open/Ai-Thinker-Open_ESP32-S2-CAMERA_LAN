@@ -1,8 +1,8 @@
 {
     "project_name":       "bootloader",
-    "project_path":       "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/bootloader/subproject",
-    "build_dir":          "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader",
-    "config_file":        "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/sdkconfig",
+    "project_path":       "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/bootloader/subproject",
+    "build_dir":          "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader",
+    "config_file":        "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/sdkconfig",
     "config_defaults":    "",
     "app_elf":            "bootloader.elf",
     "app_bin":            "bootloader.bin",
@@ -12,9 +12,9 @@
     "monitor_baud" :      "115200",
     "monitor_toolprefix": "xtensa-esp32s2-elf-",
     "config_environment" : {
-        "COMPONENT_KCONFIGS" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/efuse/Kconfig;/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/esp32s2/Kconfig;/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/esp_common/Kconfig;/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/log/Kconfig;/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/spi_flash/Kconfig",
-        "COMPONENT_KCONFIGS_PROJBUILD" : "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/bootloader/Kconfig.projbuild;/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/esptool_py/Kconfig.projbuild;/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/partition_table/Kconfig.projbuild"
+        "COMPONENT_KCONFIGS" : "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/efuse/Kconfig;/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/esp32s2/Kconfig;/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/esp_common/Kconfig;/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/log/Kconfig;/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/spi_flash/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/bootloader/Kconfig.projbuild;/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/esptool_py/Kconfig.projbuild;/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/partition_table/Kconfig.projbuild"
     },
     "build_components" : [ "bootloader", "bootloader_support", "efuse", "esp32s2", "esp_common", "esp_rom", "esptool_py", "log", "main", "micro-ecc", "partition_table", "soc", "spi_flash", "xtensa", "" ],
-    "build_component_paths" : [ "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/bootloader", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/bootloader_support", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/efuse", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/esp32s2", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/esp_common", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/esp_rom", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/esptool_py", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/log", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/bootloader/subproject/main", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/bootloader/subproject/components/micro-ecc", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/partition_table", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/soc", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/spi_flash", "/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf/components/xtensa", "" ]
+    "build_component_paths" : [ "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/bootloader", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/bootloader_support", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/efuse", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/esp32s2", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/esp_common", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/esp_rom", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/esptool_py", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/log", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/bootloader/subproject/main", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/bootloader/subproject/components/micro-ecc", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/partition_table", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/soc", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/spi_flash", "/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/xtensa", "" ]
 }

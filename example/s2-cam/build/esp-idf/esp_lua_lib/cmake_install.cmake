@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/components/esp_lua_lib
+# Install script for directory: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/components/esp_lua_lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

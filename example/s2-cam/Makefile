@@ -3,7 +3,7 @@
 # project subdirectory.
 #
 
-PROJECT_NAME := esp32-s2-hmi
+PROJECT_NAME := esp32-s2-cam
 
 include $(IDF_PATH)/make/project.mk
 

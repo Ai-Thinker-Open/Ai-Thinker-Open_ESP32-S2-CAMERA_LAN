@@ -3,4 +3,4 @@
 cmake_minimum_required(VERSION 3.5)
 set(EXTRA_COMPONENT_DIRS ../../tools/esp-idf/components)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-project(esp32-s2-hmi)
+project(esp32-s2-cam)

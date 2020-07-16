@@ -1,4 +1,5 @@
 
+
 _ESP32_S2 is a new low cost, low power Internet of Things (IOT) chip with Xtensa 32-bit LX7 single-core processor with a main frequency of up to 240MHz and rich peripheral interfaces.This case USES Ai-Thinker's ESP32-S2 development board, which shows how to use the camera separately, based on the example for ESP32_S2_HMI_
 
 
@@ -45,7 +46,7 @@ You can follow the steps below to set up the development environment, or directl
 Example of a camera
 
   ```bash
-  git clone --recursive https://github.com/8888github8888/esp_s2_cam
+  git clone --recursive https://github.com/AI-Thinker-wm/esp32-s2-cam.git
   cd esp32-s2-cam
   ```
   Or an example of HMI https://github.com/xiongyumail/esp32-s2-hmi

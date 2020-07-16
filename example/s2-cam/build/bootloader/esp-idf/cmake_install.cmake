@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/hgfs/3.temp/1.1/esp32-s2-hmi/tools/esp-idf
+# Install script for directory: /mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,20 +29,20 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/esp32s2/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/soc/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/xtensa/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/esp_common/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/esp_rom/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/log/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/partition_table/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/bootloader/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/micro-ecc/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/spi_flash/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/efuse/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/bootloader_support/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/esptool_py/cmake_install.cmake")
-  include("/mnt/hgfs/3.temp/1.1/esp32-s2-hmi/projects/hmi/build/bootloader/esp-idf/main/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/esp32s2/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/soc/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/xtensa/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/esp_common/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/esp_rom/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/log/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/partition_table/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/bootloader/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/micro-ecc/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/spi_flash/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/efuse/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/bootloader_support/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/esptool_py/cmake_install.cmake")
+  include("/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/esp-idf/main/cmake_install.cmake")
 
 endif()
 
