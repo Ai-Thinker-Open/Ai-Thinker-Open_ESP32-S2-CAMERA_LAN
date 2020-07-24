@@ -3,7 +3,7 @@ set(CMAKE_HOST_SYSTEM_NAME "Linux")
 set(CMAKE_HOST_SYSTEM_VERSION "4.15.0-106-generic")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")
 
-include("/mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/tools/cmake/toolchain-esp32s2.cmake")
+include("/mnt/hgfs/hmi_esp/esp32-s2-hmi/tools/esp-idf/tools/cmake/toolchain-esp32s2.cmake")
 
 set(CMAKE_SYSTEM "Generic")
 set(CMAKE_SYSTEM_NAME "Generic")

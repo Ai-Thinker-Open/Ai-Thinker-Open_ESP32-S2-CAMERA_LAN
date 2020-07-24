@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader"
+			"file" : "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader"
 		},
 		{
-			"file" : "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader.rule"
+			"file" : "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader.rule"
 		},
 		{
-			"file" : "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader-complete.rule"
+			"file" : "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader-complete.rule"
 		},
 		{
-			"file" : "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+			"file" : "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
 		},
 		{
-			"file" : "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+			"file" : "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
 		},
 		{
-			"file" : "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+			"file" : "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
 		},
 		{
-			"file" : "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+			"file" : "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
 		},
 		{
-			"file" : "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+			"file" : "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
 		},
 		{
-			"file" : "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+			"file" : "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
 		},
 		{
-			"file" : "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+			"file" : "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
 		}
 	],
 	"target" : 

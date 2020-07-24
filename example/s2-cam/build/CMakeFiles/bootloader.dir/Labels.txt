@@ -1,13 +1,13 @@
 # Target labels
  bootloader
 # Source files and their labels
-/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader
-/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader.rule
-/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader-complete.rule
-/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
-/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
-/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
-/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
-/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
-/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
-/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader
+/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader.rule
+/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/CMakeFiles/bootloader-complete.rule
+/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule

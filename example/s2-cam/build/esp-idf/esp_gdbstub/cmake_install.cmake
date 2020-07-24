@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/hgfs/3.temp/esp32-s2-hmi/tools/esp-idf/components/esp_gdbstub
+# Install script for directory: /mnt/hgfs/hmi_esp/esp32-s2-hmi/tools/esp-idf/components/esp_gdbstub
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -103,7 +103,7 @@ esp_err_t stream_handler(httpd_req_t *req)
                 (uint32_t)(recv_len/1024),
                 (uint32_t)frame_time, 
                 1000.0 / (uint32_t)frame_time);
-		ESP_LOGI(TAG, "Free heap: %u", xPortGetFreeHeapSize());//Memory monitoring
+		//ESP_LOGI(TAG, "Free heap: %u", xPortGetFreeHeapSize());//Memory monitoring
 		cam_give(cam_buf);
 	}
 	cam_give(cam_buf);

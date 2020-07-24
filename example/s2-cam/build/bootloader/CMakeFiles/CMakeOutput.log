@@ -11,7 +11,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/3.5.1/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/3.5.1/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-g++ 
@@ -24,7 +24,7 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/3.5.1/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/3.5.1/CompilerIdCXX/a.out"
 
 Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
 xtensa-esp32s2-elf-gcc (crosstool-NG esp-2020r1) 8.2.0
@@ -33,19 +33,19 @@ This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_bd804"
-[1/2] Building C object CMakeFiles/cmTC_bd804.dir/testCCompiler.c.obj
-[2/2] Linking C executable cmTC_bd804
+Run Build Command:"/usr/bin/ninja" "cmTC_3b285"
+[1/2] Building C object CMakeFiles/cmTC_3b285.dir/testCCompiler.c.obj
+[2/2] Linking C executable cmTC_3b285
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_ad8f4"
-[1/2] Building C object CMakeFiles/cmTC_ad8f4.dir/CMakeCCompilerABI.c.obj
-[2/2] Linking C executable cmTC_ad8f4
+Run Build Command:"/usr/bin/ninja" "cmTC_4b952"
+[1/2] Building C object CMakeFiles/cmTC_4b952.dir/CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_4b952
 Using built-in specs.
 COLLECT_GCC=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-gcc
 COLLECT_LTO_WRAPPER=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper
@@ -55,18 +55,18 @@ Thread model: posix
 gcc version 8.2.0 (crosstool-NG esp-2020r1) 
 COMPILER_PATH=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/bin/
 LIBRARY_PATH=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/
-COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_ad8f4'
- /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/collect2 -plugin /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/liblto_plugin.so -plugin-opt=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccasupCi.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_ad8f4 /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/crt0.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crti.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtbegin.o -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0 -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib CMakeFiles/cmTC_ad8f4.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtend.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtn.o
-COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_ad8f4'
+COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_4b952'
+ /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/collect2 -plugin /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/liblto_plugin.so -plugin-opt=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwYI47l.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_4b952 /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/crt0.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crti.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtbegin.o -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0 -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib CMakeFiles/cmTC_4b952.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtend.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtn.o
+COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_4b952'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(xtensa-esp32s2-elf-ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/ninja" "cmTC_ad8f4"]
-  ignore line: [[1/2] Building C object CMakeFiles/cmTC_ad8f4.dir/CMakeCCompilerABI.c.obj]
-  ignore line: [[2/2] Linking C executable cmTC_ad8f4]
+  ignore line: [Run Build Command:"/usr/bin/ninja" "cmTC_4b952"]
+  ignore line: [[1/2] Building C object CMakeFiles/cmTC_4b952.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [[2/2] Linking C executable cmTC_4b952]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-gcc]
   ignore line: [COLLECT_LTO_WRAPPER=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper]
@@ -76,27 +76,27 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 8.2.0 (crosstool-NG esp-2020r1) ]
   ignore line: [COMPILER_PATH=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/bin/]
   ignore line: [LIBRARY_PATH=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_ad8f4']
-  link line: [ /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/collect2 -plugin /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/liblto_plugin.so -plugin-opt=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccasupCi.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_ad8f4 /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/crt0.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crti.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtbegin.o -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0 -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib CMakeFiles/cmTC_ad8f4.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtend.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_4b952']
+  link line: [ /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/collect2 -plugin /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/liblto_plugin.so -plugin-opt=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwYI47l.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_4b952 /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/crt0.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crti.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtbegin.o -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0 -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib CMakeFiles/cmTC_4b952.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtend.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtn.o]
     arg [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccasupCi.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccwYI47l.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
     arg [-plugin-opt=-pass-through=-lnosys] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_ad8f4] ==> ignore
+    arg [cmTC_4b952] ==> ignore
     arg [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/crt0.o] ==> ignore
     arg [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crti.o] ==> ignore
     arg [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtbegin.o] ==> ignore
     arg [-L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0] ==> dir [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0]
     arg [-L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc] ==> dir [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc]
     arg [-L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib] ==> dir [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib]
-    arg [CMakeFiles/cmTC_ad8f4.dir/CMakeCCompilerABI.c.obj] ==> ignore
+    arg [CMakeFiles/cmTC_4b952.dir/CMakeCCompilerABI.c.obj] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [-lc] ==> lib [c]
     arg [-lnosys] ==> lib [nosys]
@@ -117,11 +117,11 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_463ef"
-[1/2] Building C object CMakeFiles/cmTC_463ef.dir/feature_tests.c.obj
-[2/2] Linking C executable cmTC_463ef
+Run Build Command:"/usr/bin/ninja" "cmTC_ccefb"
+[1/2] Building C object CMakeFiles/cmTC_ccefb.dir/feature_tests.c.obj
+[2/2] Linking C executable cmTC_ccefb
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -131,11 +131,11 @@ Run Build Command:"/usr/bin/ninja" "cmTC_463ef"
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_90d4a"
-[1/2] Building C object CMakeFiles/cmTC_90d4a.dir/feature_tests.c.obj
-[2/2] Linking C executable cmTC_90d4a
+Run Build Command:"/usr/bin/ninja" "cmTC_8c9e4"
+[1/2] Building C object CMakeFiles/cmTC_8c9e4.dir/feature_tests.c.obj
+[2/2] Linking C executable cmTC_8c9e4
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -145,11 +145,11 @@ Run Build Command:"/usr/bin/ninja" "cmTC_90d4a"
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_a9dd2"
-[1/2] Building C object CMakeFiles/cmTC_a9dd2.dir/feature_tests.c.obj
-[2/2] Linking C executable cmTC_a9dd2
+Run Build Command:"/usr/bin/ninja" "cmTC_1d637"
+[1/2] Building C object CMakeFiles/cmTC_1d637.dir/feature_tests.c.obj
+[2/2] Linking C executable cmTC_1d637
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -157,19 +157,19 @@ Run Build Command:"/usr/bin/ninja" "cmTC_a9dd2"
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_79614"
-[1/2] Building CXX object CMakeFiles/cmTC_79614.dir/testCXXCompiler.cxx.obj
-[2/2] Linking CXX executable cmTC_79614
+Run Build Command:"/usr/bin/ninja" "cmTC_04577"
+[1/2] Building CXX object CMakeFiles/cmTC_04577.dir/testCXXCompiler.cxx.obj
+[2/2] Linking CXX executable cmTC_04577
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_31139"
-[1/2] Building CXX object CMakeFiles/cmTC_31139.dir/CMakeCXXCompilerABI.cpp.obj
-[2/2] Linking CXX executable cmTC_31139
+Run Build Command:"/usr/bin/ninja" "cmTC_048dd"
+[1/2] Building CXX object CMakeFiles/cmTC_048dd.dir/CMakeCXXCompilerABI.cpp.obj
+[2/2] Linking CXX executable cmTC_048dd
 Using built-in specs.
 COLLECT_GCC=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-g++
 COLLECT_LTO_WRAPPER=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper
@@ -179,18 +179,18 @@ Thread model: posix
 gcc version 8.2.0 (crosstool-NG esp-2020r1) 
 COMPILER_PATH=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/bin/
 LIBRARY_PATH=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/
-COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_31139'
- /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/collect2 -plugin /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/liblto_plugin.so -plugin-opt=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6FjQ11.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_31139 /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/crt0.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crti.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtbegin.o -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0 -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib CMakeFiles/cmTC_31139.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtend.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtn.o
-COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_31139'
+COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_048dd'
+ /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/collect2 -plugin /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/liblto_plugin.so -plugin-opt=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccSYR6v0.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_048dd /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/crt0.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crti.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtbegin.o -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0 -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib CMakeFiles/cmTC_048dd.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtend.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtn.o
+COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_048dd'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(xtensa-esp32s2-elf-ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/ninja" "cmTC_31139"]
-  ignore line: [[1/2] Building CXX object CMakeFiles/cmTC_31139.dir/CMakeCXXCompilerABI.cpp.obj]
-  ignore line: [[2/2] Linking CXX executable cmTC_31139]
+  ignore line: [Run Build Command:"/usr/bin/ninja" "cmTC_048dd"]
+  ignore line: [[1/2] Building CXX object CMakeFiles/cmTC_048dd.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [[2/2] Linking CXX executable cmTC_048dd]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/xtensa-esp32s2-elf-g++]
   ignore line: [COLLECT_LTO_WRAPPER=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper]
@@ -200,27 +200,27 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 8.2.0 (crosstool-NG esp-2020r1) ]
   ignore line: [COMPILER_PATH=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/bin/]
   ignore line: [LIBRARY_PATH=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/:/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_31139']
-  link line: [ /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/collect2 -plugin /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/liblto_plugin.so -plugin-opt=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6FjQ11.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_31139 /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/crt0.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crti.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtbegin.o -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0 -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib CMakeFiles/cmTC_31139.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtend.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-mlongcalls' '-v' '-o' 'cmTC_048dd']
+  link line: [ /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/collect2 -plugin /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/liblto_plugin.so -plugin-opt=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccSYR6v0.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -o cmTC_048dd /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/crt0.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crti.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtbegin.o -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0 -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc -L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib CMakeFiles/cmTC_048dd.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtend.o /home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtn.o]
     arg [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../libexec/gcc/xtensa-esp32s2-elf/8.2.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cc6FjQ11.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccSYR6v0.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
     arg [-plugin-opt=-pass-through=-lnosys] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_31139] ==> ignore
+    arg [cmTC_048dd] ==> ignore
     arg [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib/crt0.o] ==> ignore
     arg [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crti.o] ==> ignore
     arg [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/crtbegin.o] ==> ignore
     arg [-L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0] ==> dir [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0]
     arg [-L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc] ==> dir [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc]
     arg [-L/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib] ==> dir [/home/aithinker-s2-16/.espressif/tools/xtensa-esp32s2-elf/esp-2020r1-8.2.0/xtensa-esp32s2-elf/bin/../lib/gcc/xtensa-esp32s2-elf/8.2.0/../../../../xtensa-esp32s2-elf/lib]
-    arg [CMakeFiles/cmTC_31139.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
+    arg [CMakeFiles/cmTC_048dd.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc] ==> lib [gcc]
@@ -243,11 +243,11 @@ Parsed CXX implicit link information from above output:
 
 
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_cdd36"
-[1/2] Building CXX object CMakeFiles/cmTC_cdd36.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_cdd36
+Run Build Command:"/usr/bin/ninja" "cmTC_873ba"
+[1/2] Building CXX object CMakeFiles/cmTC_873ba.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_873ba
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -310,11 +310,11 @@ Run Build Command:"/usr/bin/ninja" "cmTC_cdd36"
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_684d9"
-[1/2] Building CXX object CMakeFiles/cmTC_684d9.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_684d9
+Run Build Command:"/usr/bin/ninja" "cmTC_0ab7b"
+[1/2] Building CXX object CMakeFiles/cmTC_0ab7b.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_0ab7b
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -377,11 +377,11 @@ Run Build Command:"/usr/bin/ninja" "cmTC_684d9"
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /mnt/hgfs/3.temp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
+Change Dir: /mnt/hgfs/hmi_esp/esp32-s2-hmi/example/s2-cam/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_ccb92"
-[1/2] Building CXX object CMakeFiles/cmTC_ccb92.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_ccb92
+Run Build Command:"/usr/bin/ninja" "cmTC_0b90a"
+[1/2] Building CXX object CMakeFiles/cmTC_0b90a.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_0b90a
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

@@ -46,7 +46,7 @@ You can follow the steps below to set up the development environment, or directl
 Example of a camera
 
   ```bash
-  git clone --recursive https://github.com/AI-Thinker-wm/esp32-s2-cam.git
+  git clone --recursive https://github.com/Ai-Thinker-Open/Ai-Thinker-Open_ESP32-S2-CAMERA_LAN.git
   cd esp32-s2-cam
   ```
   Or an example of HMI https://github.com/xiongyumail/esp32-s2-hmi
